@@ -1,0 +1,54 @@
+{
+  "name": "vocca",
+  "version": "1.0.0",
+  "description": "L'outil idéal pour apprendre et réviser le vocabulaire vu en classe.",
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/younesaassila/vocca.git"
+  },
+  "keywords": [
+    "javascript",
+    "website",
+    "vuejs"
+  ],
+  "author": "Younes Aassila",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/younesaassila/vocca/issues"
+  },
+  "homepage": "https://github.com/younesaassila/vocca#readme",
+  "dependencies": {
+    "bootstrap": "^4.6.0",
+    "bootstrap-vue": "^2.21.2",
+    "core-js": "^3.15.2",
+    "firebase": "^7.24.0",
+    "vue": "^2.6.14",
+    "vue-cookie": "^1.1.4",
+    "vue-recaptcha": "^1.3.0",
+    "vue-router": "^3.5.2",
+    "vuex": "^3.6.2",
+    "vuexfire": "^3.2.5"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "~4.4.0",
+    "@vue/cli-plugin-eslint": "~4.4.0",
+    "@vue/cli-plugin-router": "~4.4.0",
+    "@vue/cli-plugin-vuex": "~4.4.0",
+    "@vue/cli-service": "^4.5.13",
+    "@vue/eslint-config-prettier": "^6.0.0",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^6.7.2",
+    "eslint-plugin-prettier": "^3.4.0",
+    "eslint-plugin-vue": "^6.2.2",
+    "prettier": "^2.3.2",
+    "sass": "^1.35.2",
+    "sass-loader": "^8.0.2",
+    "vue-template-compiler": "^2.6.14"
+  },
+  "private": true
+}

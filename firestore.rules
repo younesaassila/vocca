@@ -1,0 +1,57 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isLoggedIn() {
+      return request.auth != null;
+    }
+
+    function isTeacher() {
+      return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == "teacher";
+    }
+
+    function isStudent() {
+      return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == "student";
+    }
+
+    match /{document=**} {
+      allow read: if isLoggedIn();
+    }
+
+    match /emails/{email_id} {
+      allow read, update, delete: if false;
+      allow create: if true;
+    }
+
+    match /users/{user_id} {
+      allow write: if request.auth.uid == user_id;
+    }
+
+    match /classes/{class_id} {
+      function isClassTeacher() {
+        return request.auth.uid == resource.data.teacher;
+      }
+
+      function isStudentJoining() {
+        return
+          isStudent()
+          && request.resource.data.diff(resource.data).affectedKeys().hasOnly(["students"])
+          && request.resource.data.students.hasAll(resource.data.students)
+          && request.resource.data.students.size() <= resource.data.slots
+          && resource.data.status == "public";
+      }
+
+      allow create: if request.auth.uid == request.resource.data.teacher && isTeacher();
+      allow update: if (isClassTeacher() && isTeacher()) || isStudentJoining();
+      allow delete: if (isClassTeacher() && isTeacher());
+    }
+
+    match /lists/{list_id} {
+      function isListAuthor() {
+        return request.auth.uid == resource.data.author;
+      }
+
+      allow create: if request.auth.uid == request.resource.data.author && isTeacher();
+      allow update, delete: if isListAuthor() && isTeacher();
+    }
+  }
+}
