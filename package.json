@@ -1,6 +1,6 @@
 {
   "name": "vocca",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "L'outil idéal pour apprendre et réviser le vocabulaire vu en classe.",
   "scripts": {
     "serve": "vue-cli-service serve",
